@@ -11,8 +11,10 @@ GIS_PATH=os.getenv('GIS_PATH')
 if __name__ == '__main__':
     gis = Authenticate().gis
     filename='test_upload_from_python'
+    #needs to be a zip
     filepath = GIS_PATH + 'nycparksopenspace.zip'
     file_item = upload_shapefile(gis, filename, filepath, tags='python, test')
     file_item.share(org=True)
+    #publish the file to convert to a feature layer.
     file_item.publish(overwrite=True)
     print(f'{filename} uploaded')
